@@ -174,7 +174,6 @@ students[0].user_id # =>  1
 post_repo = PostRepository.new
 
 single_post = post_repo.find(1)
-
 single_post.title # => 'tuesday'
 
 # 3
