@@ -157,34 +157,46 @@ These examples will later be encoded as RSpec tests.
 # EXAMPLES
 
 # 1
-# Get all students
+# Get all posts
 
-repo = StudentRepository.new
+post_repo = PostRepository.new
 
-students = repo.all
+all_posts = post_repo.all
 
-students.length # =>  2
+all_posts.length # =>  4
 
-students[0].id # =>  1
-students[0].name # =>  'David'
-students[0].cohort_name # =>  'April 2022'
+students[0].user_id # =>  1
 
-students[1].id # =>  2
-students[1].name # =>  'Anna'
-students[1].cohort_name # =>  'May 2022'
 
 # 2
-# Get a single student
+# Get a single post
 
-repo = StudentRepository.new
+post_repo = PostRepository.new
 
-student = repo.find(1)
+single_post = post_repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+single_post.title # => 'tuesday'
 
-# Add more examples for each method
+# 3
+# create a new post 
+
+post_repo = PostRepository.new
+
+new_post = Post.new
+new_post.title = "swimming"
+new_post.contents = "not that keen on it tbh"
+new_post.view_count = "12" 
+new_post.user_id = 2
+
+# 4 
+# Delete a post 
+
+post_repo = PostRepository.new
+
+post_repo.delete(1)
+
+remaining_posts = post_repo.all
+remaining_posts.length = 3
 ```
 
 Encode this example as a test.

@@ -1,3 +1,5 @@
+require 'user_repository'
+
 def reset_users_table
     seed_sql = File.read('spec/seeds.sql')
     connection = PG.connect({ host: '127.0.0.1', dbname: 'social_network_test' })
@@ -9,7 +11,7 @@ def reset_users_table
       reset_users_table
     end
   
-    xit "retreives all users from database" do 
+    it "retreives all users from database" do 
         user_repo = UserRepository.new
 
         users = user_repo.all
@@ -19,16 +21,16 @@ def reset_users_table
         expect(users[1].username).to eq 'anna123'
     end 
 
-    xit "retrieves a specific user from the database" do
+    it "retrieves a specific user from the database" do
       user_repo = UserRepository.new
  
-      single_user = user_repo.find('anna123')
+      single_user = user_repo.find(2)
     
-      expect(single_user.id).to eq 2
+      expect(single_user.username).to eq 'anna123'
       expect(single_user.email_address).to eq 'anna@gmail.com'
     end 
 
-    xit "creates a new user and adds it to the database" do 
+    it "creates a new user and adds it to the database" do 
         user_repo = UserRepository.new
 
         new_user = User.new
@@ -40,7 +42,7 @@ def reset_users_table
         expect(all_users[2].username).to eq 'reallygoodusername'
     end 
 
-    xit "deletes an existing user from the database" do 
+    it "deletes an existing user from the database" do 
         user_repo = UserRepository.new
 
         user_repo.delete(1)
